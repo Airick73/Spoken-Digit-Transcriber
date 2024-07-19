@@ -1,0 +1,17 @@
+version: '3.9'  
+
+services:
+  web:  # name of service 
+    build: .  # Specify the directory of the Dockerfile
+    ports:                                         
+      - "5000:5000"                     
+    volumes:
+      - ./app:/app
+    environment:
+      - FLASK_APP=main.py
+      - FLASK_ENV=development
+    command: flask run --host=0.0.0.0
+    deploy:
+      resources:
+        limits:
+          memory: 4G
